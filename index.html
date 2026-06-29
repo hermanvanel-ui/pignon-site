@@ -3,286 +3,247 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pignon — Le site web des artisans, clé en main en 7 jours</title>
-<meta name="description" content="Pignon crée le site web professionnel et l'identité de marque des artisans et TPE. Clé en main, en 7 jours, à prix fixe.">
+<title>Pignon — L'ADN web des artisans, clé en main en 7 jours</title>
+<meta name="description" content="Pignon crée le site web et l'identité de marque des artisans et TPE. Clé en main, en 7 jours, à prix fixe.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
-:root{
-  --navy:#16264a; --navy2:#1f3a6e; --orange:#e8742c; --orange-d:#cf5f1a;
-  --cream:#fff8f0; --ink:#1a2233; --muted:#5b6576; --line:#e7e0d6; --white:#fff;
-  --r:18px; --shadow:0 18px 50px -22px rgba(22,38,74,.45);
-}
+:root{--navy:#16264a;--navy2:#1f3a6e;--orange:#e8742c;--orange-d:#cf5f1a;--cream:#fff8f0;--ink:#eaf0ff;--muted:#9fb0d0;--white:#fff;--r:18px}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
-h1,h2,h3,.dsp{font-family:Sora,sans-serif;line-height:1.08;letter-spacing:-.02em}
-img{max-width:100%;display:block}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--navy);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:Sora,sans-serif;line-height:1.08;letter-spacing:-.02em}
 a{color:inherit;text-decoration:none}
-.wrap{width:min(1080px,92vw);margin-inline:auto}
-.btn{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-family:Sora;border-radius:999px;padding:.85em 1.4em;font-size:1rem;cursor:pointer;border:0;transition:transform .15s ease,box-shadow .15s ease}
-.btn-p{background:var(--orange);color:#fff;box-shadow:0 10px 24px -10px var(--orange)}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 16px 30px -12px var(--orange)}
-.btn-g{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35)}
-.btn-g:hover{border-color:#fff;background:rgba(255,255,255,.08)}
-.eyebrow{font-family:Sora;font-weight:700;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+.fade-top{position:fixed;inset:0 0 auto 0;height:120px;background:linear-gradient(var(--navy),transparent);z-index:1;pointer-events:none}
+.fade-bot{position:fixed;left:0;right:0;bottom:0;height:140px;background:linear-gradient(transparent,var(--navy));z-index:1;pointer-events:none}
+.wrap{width:min(1100px,92vw);margin-inline:auto}
+.btn{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-family:Sora;border-radius:999px;padding:.85em 1.4em;font-size:1rem;cursor:pointer;border:0;transition:transform .15s,box-shadow .15s}
+.btn-p{background:var(--orange);color:#fff;box-shadow:0 12px 28px -10px var(--orange)}
+.btn-p:hover{transform:translateY(-2px)}
+.btn-g{background:rgba(255,255,255,.06);color:#fff;border:1.5px solid rgba(255,255,255,.3)}
+.btn-w{background:#fff;color:var(--navy)}
+.eyebrow{font-family:Sora;font-weight:700;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange)}
 
-/* HEADER */
-header{position:sticky;top:0;z-index:50;background:rgba(22,38,74,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:.85rem 0;color:#fff}
-.logo{font-family:Sora;font-weight:800;font-size:1.3rem;letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem}
-.logo .mark{width:26px;height:26px;border-radius:7px;background:var(--orange);display:inline-grid;place-items:center;color:#fff;font-size:.95rem;font-weight:800;transform:rotate(-6deg)}
-.nav-links{display:none;gap:1.6rem;font-size:.95rem;font-weight:500}
-.nav-links a{color:rgba(255,255,255,.85)} .nav-links a:hover{color:#fff}
-.nav .btn{padding:.6em 1.1em;font-size:.9rem}
-.burger{background:none;border:0;color:#fff;font-size:1.5rem;cursor:pointer;display:block}
-.mobile-menu{display:none;flex-direction:column;gap:.2rem;padding:.5rem 0 1rem;background:var(--navy);color:#fff}
-.mobile-menu.open{display:flex}
-.mobile-menu a{padding:.7rem .2rem;border-bottom:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.9)}
+header{position:fixed;top:0;left:0;right:0;z-index:30}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;color:#fff}
+.wrapN{width:min(1100px,92vw);margin-inline:auto;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:Sora;font-weight:800;font-size:1.3rem;display:flex;align-items:center;gap:.5rem}
+.logo .mark{width:26px;height:26px;border-radius:7px;background:var(--orange);display:inline-grid;place-items:center;color:#fff;font-weight:800;transform:rotate(-6deg)}
+.nav .btn{padding:.55em 1.1em;font-size:.88rem}
 
-/* HERO */
-.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;position:relative;overflow:hidden}
-.hero::after{content:"";position:absolute;right:-12%;top:-30%;width:60vw;height:60vw;max-width:620px;max-height:620px;background:radial-gradient(circle at center,rgba(232,116,44,.28),transparent 62%);pointer-events:none}
-.hero-in{padding:3.4rem 0 3.8rem;position:relative;z-index:2}
-.hero h1{font-size:clamp(2.2rem,7.5vw,3.7rem);font-weight:800;margin:.7rem 0 .9rem}
-.hero h1 .hl{color:var(--orange)}
-.hero p.lead{font-size:clamp(1.05rem,2.6vw,1.25rem);color:rgba(255,255,255,.86);max-width:30ch}
-.hero .cta{display:flex;flex-wrap:wrap;gap:.8rem;margin:1.7rem 0 1.2rem}
-.trust{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;font-size:.85rem;color:rgba(255,255,255,.7)}
-.trust span{display:inline-flex;align-items:center;gap:.4rem}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--orange);display:inline-block}
+main{position:relative;z-index:2}
+.panel{min-height:100vh;display:flex;align-items:center;padding:5rem 0}
+.panel.right{justify-content:flex-end}
+.panel.center{justify-content:center;text-align:center}
+.card{background:rgba(18,30,58,.62);backdrop-filter:blur(9px);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:2rem;max-width:430px;box-shadow:0 24px 60px -28px #000}
+.card.lg{max-width:560px}
+.card h2{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:800;margin:.5rem 0 .7rem}
+.card p{color:#cdd8ef;font-size:1.03rem}
+.card .lead{font-size:1.12rem;color:#e9eefb}
+.hl{color:var(--orange)}
+.cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem}
+.list{list-style:none;display:grid;gap:.7rem;margin-top:1rem}
+.list li{display:flex;gap:.6rem;align-items:flex-start;color:#dde6f7}
+.list li b{font-family:Sora}
+.tag{color:var(--orange);font-weight:800}
+.trust{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;font-size:.85rem;color:var(--muted);margin-top:1.1rem}
+.trust span{display:inline-flex;gap:.4rem;align-items:center}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--orange)}
 
-/* SECTIONS */
-section{padding:3.3rem 0}
-.sec-head{max-width:38ch;margin-bottom:1.8rem}
-.sec-head h2{font-size:clamp(1.6rem,5vw,2.3rem);font-weight:700;margin:.5rem 0}
-.sec-head p{color:var(--muted);font-size:1.05rem}
-.center{margin-inline:auto;text-align:center}
-
-/* PROBLEME */
-.prob{background:var(--navy);color:#fff}
-.prob .big{font-size:clamp(1.7rem,5.5vw,2.6rem);font-family:Sora;font-weight:800;line-height:1.15;max-width:18ch}
-.prob .big b{color:var(--orange)}
-.prob .pts{display:grid;gap:1rem;margin-top:1.6rem}
-.prob .pt{display:flex;gap:.8rem;align-items:flex-start;color:rgba(255,255,255,.82)}
-.prob .pt .x{color:var(--orange);font-weight:800;font-family:Sora}
-
-/* CARDS */
-.cards{display:grid;gap:1.1rem}
-.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.5rem;box-shadow:0 8px 24px -18px rgba(22,38,74,.5)}
-.card .ic{width:46px;height:46px;border-radius:12px;background:var(--cream);display:grid;place-items:center;font-size:1.4rem;margin-bottom:.9rem;border:1px solid var(--line)}
-.card h3{font-size:1.15rem;margin-bottom:.4rem}
-.card p{color:var(--muted);font-size:.97rem}
-
-/* STEPS */
-.steps{display:grid;gap:.9rem;counter-reset:s}
-.step{display:flex;gap:1rem;background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.2rem;align-items:center}
-.step .n{counter-increment:s;flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:var(--navy);color:#fff;font-family:Sora;font-weight:800;display:grid;place-items:center}
-.step .n::before{content:counter(s)}
-.step b{font-family:Sora}
+.steps{display:grid;gap:.6rem;margin-top:1rem}
+.step{display:flex;gap:.8rem;align-items:center}
+.step .n{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--orange);color:#fff;font-family:Sora;font-weight:800;display:grid;place-items:center;font-size:.95rem}
 .step small{color:var(--muted)}
-
-/* PREUVE */
-.proof{background:linear-gradient(160deg,#fff,#fff5ea)}
-.quote{background:#fff;border:1px solid var(--line);border-left:5px solid var(--orange);border-radius:var(--r);padding:1.6rem;box-shadow:var(--shadow)}
-.quote p{font-size:1.15rem;font-family:Sora;font-weight:500;line-height:1.45}
-.quote .who{margin-top:1rem;color:var(--muted);font-size:.92rem}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:1.4rem;text-align:center}
-.stat b{display:block;font-family:Sora;font-weight:800;font-size:1.7rem;color:var(--navy2)}
+.amt{font-family:Sora;font-weight:800;font-size:2.8rem;color:#fff;line-height:1}
+.amt small{font-size:1rem;color:var(--muted);font-weight:600}
+.sub{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:.7rem .9rem;font-size:.92rem;color:#cdd8ef;margin:.5rem 0}
+.stats{display:flex;gap:1.4rem;margin-top:1.1rem;justify-content:center;flex-wrap:wrap}
+.stat b{display:block;font-family:Sora;font-weight:800;font-size:1.7rem;color:var(--orange)}
 .stat small{color:var(--muted);font-size:.8rem}
-
-/* PRICING */
-.price{background:var(--navy);color:#fff}
-.pcard{background:#fff;color:var(--ink);border-radius:22px;padding:2rem 1.7rem;box-shadow:var(--shadow);max-width:440px;margin-inline:auto;position:relative;overflow:hidden}
-.pcard::before{content:"Prix fixe, sans surprise";position:absolute;top:1.1rem;right:-2.4rem;background:var(--orange);color:#fff;font-family:Sora;font-weight:700;font-size:.72rem;padding:.3rem 3rem;transform:rotate(38deg)}
-.pcard .amt{font-family:Sora;font-weight:800;font-size:3rem;color:var(--navy);line-height:1}
-.pcard .amt small{font-size:1rem;color:var(--muted);font-weight:600}
-.pcard ul{list-style:none;margin:1.2rem 0;display:grid;gap:.6rem}
-.pcard li{display:flex;gap:.6rem;align-items:flex-start;font-size:.97rem}
-.pcard li::before{content:"✓";color:var(--orange);font-weight:800}
-.pcard .sub{background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem;font-size:.92rem;color:var(--muted);margin-bottom:1.1rem}
-
-/* CTA */
-.final{background:linear-gradient(160deg,var(--orange),var(--orange-d));color:#fff;text-align:center;border-radius:26px;padding:2.6rem 1.4rem;box-shadow:var(--shadow)}
-.final h2{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:800;margin-bottom:.6rem}
-.final p{color:rgba(255,255,255,.92);max-width:40ch;margin:0 auto 1.4rem}
-.final .btn-w{background:#fff;color:var(--navy)}
-
-footer{background:var(--navy);color:rgba(255,255,255,.7);padding:2rem 0;font-size:.88rem}
-.foot{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
-
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.scrollcue{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:5;color:var(--muted);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;animation:b 1.8s infinite}
+@keyframes b{0%,100%{opacity:.4;transform:translate(-50%,0)}50%{opacity:1;transform:translate(-50%,5px)}}
+.reveal{opacity:0;transform:translateY(26px) scale(.98);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:none}
-
-@media(min-width:720px){
-  .nav-links{display:flex}
-  .burger{display:none}
-  .cards{grid-template-columns:repeat(3,1fr)}
-  .steps{grid-template-columns:repeat(2,1fr)}
-  .prob .grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:2.4rem;align-items:center}
-  .hero-in{padding:5rem 0 5.4rem}
-  .proof .grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center}
-}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+footer{position:relative;z-index:2;background:rgba(11,19,40,.85);color:var(--muted);padding:2rem 0;font-size:.86rem;text-align:center}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+@media(max-width:600px){.card{padding:1.5rem}.panel{padding:4rem 0}}
 </style>
 </head>
 <body>
+<canvas id="bg"></canvas>
+<div class="fade-top"></div><div class="fade-bot"></div>
 
-<header>
-  <div class="wrap nav">
-    <div class="logo"><span class="mark">P</span> Pignon</div>
-    <nav class="nav-links">
-      <a href="#offre">L'offre</a>
-      <a href="#methode">Méthode</a>
-      <a href="#preuve">Réalisations</a>
-      <a href="#tarif">Tarifs</a>
-    </nav>
-    <a href="#contact" class="btn btn-p" style="display:none" id="navcta">Mon devis</a>
-    <button class="burger" id="burger" aria-label="Menu">☰</button>
-  </div>
-  <div class="wrap mobile-menu" id="mm">
-    <a href="#offre">L'offre</a><a href="#methode">Méthode</a><a href="#preuve">Réalisations</a><a href="#tarif">Tarifs</a><a href="#contact">Mon devis</a>
-  </div>
-</header>
+<header><div class="wrapN nav">
+  <div class="logo"><span class="mark">P</span> Pignon</div>
+  <a href="#contact" class="btn btn-p">Mon devis</a>
+</div></header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="wrap hero-in">
-    <span class="eyebrow">Sites web &amp; marque · artisans &amp; TPE</span>
-    <h1>Donnez <span class="hl">pignon sur rue</span><br>à votre métier.</h1>
-    <p class="lead">Votre site web professionnel et votre identité de marque. Clé en main, en <b>7 jours</b>, à <b>prix fixe</b>.</p>
-    <div class="cta">
-      <a href="#contact" class="btn btn-p">Recevoir mon devis →</a>
-      <a href="#preuve" class="btn btn-g">Voir une réalisation</a>
-    </div>
-    <div class="trust">
-      <span><span class="dot"></span> Livré en 7 jours</span>
-      <span><span class="dot"></span> Sans surprise</span>
-      <span><span class="dot"></span> Accompagnement inclus</span>
-    </div>
-  </div>
-</section>
-
-<!-- PROBLEME -->
-<section class="prob">
-  <div class="wrap grid2">
-    <div class="reveal">
-      <p class="big">1 artisan sur 2 n'a <b>aucun site crédible</b>. Et ça leur coûte des clients.</p>
-    </div>
-    <div class="pts reveal">
-      <div class="pt"><span class="x">✕</span><div>Des clients vérifient en ligne, ne trouvent rien de sérieux… et appellent le concurrent.</div></div>
-      <div class="pt"><span class="x">✕</span><div>Une agence, c'est cher et lent. Le faire soi-même sur Wix, c'est moche et chronophage.</div></div>
-      <div class="pt"><span class="x">✕</span><div>Résultat : un savoir-faire réel, mais invisible.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- OFFRE -->
-<section id="offre">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Ce qu'on fait pour vous</span>
-      <h2>Tout ce qu'il faut pour être pris au sérieux.</h2>
-      <p>Un seul interlocuteur, un seul forfait, zéro prise de tête.</p>
-    </div>
-    <div class="cards">
-      <div class="card reveal"><div class="ic">🌐</div><h3>Un site web pro</h3><p>Un site clair et moderne qui présente votre métier, vos réalisations et un moyen simple de vous contacter.</p></div>
-      <div class="card reveal"><div class="ic">🎨</div><h3>Une vraie identité</h3><p>Logo, couleurs, charte : une image cohérente et professionnelle sur tous vos supports.</p></div>
-      <div class="card reveal"><div class="ic">🧰</div><h3>Clé en main</h3><p>Hébergement, mises à jour, et une hotline. On s'occupe de la technique, vous gérez votre chantier.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- METHODE -->
-<section id="methode" style="background:#fff">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">La méthode Pignon</span>
-      <h2>En ligne en 7 jours, sans y passer vos soirées.</h2>
-      <p>L'IA pour aller vite, la main humaine pour la finition.</p>
-    </div>
-    <div class="steps">
-      <div class="step reveal"><span class="n"></span><div><b>Jour 1 — On vous écoute.</b><br><small>Un échange simple : votre métier, vos clients, vos photos.</small></div></div>
-      <div class="step reveal"><span class="n"></span><div><b>Jours 2 à 5 — On crée.</b><br><small>Marque + site générés rapidement, puis peaufinés à la main.</small></div></div>
-      <div class="step reveal"><span class="n"></span><div><b>Jour 6 — On ajuste.</b><br><small>Vos retours, nos retouches. C'est votre image.</small></div></div>
-      <div class="step reveal"><span class="n"></span><div><b>Jour 7 — En ligne.</b><br><small>Votre site est publié. On reste là pour la suite.</small></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- PREUVE -->
-<section id="preuve" class="proof">
-  <div class="wrap grid2">
-    <div class="quote reveal">
-      <p>« Je lançais ma menuiserie sans aucune présence en ligne. Pignon m'a livré une marque et un site complet — devis validé, image pro. Mes clients me prennent enfin au sérieux. »</p>
-      <div class="who">— Le battant, menuiserie aluminium (PACA)</div>
-    </div>
-    <div class="reveal">
-      <div class="sec-head" style="margin-bottom:1rem">
-        <span class="eyebrow">Déjà livré</span>
-        <h2 style="font-size:1.6rem">La preuve, pas des promesses.</h2>
+<main>
+  <!-- HERO -->
+  <section class="panel center">
+    <div class="card lg" style="background:rgba(18,30,58,.45)">
+      <span class="eyebrow">L'ADN web des artisans &amp; TPE</span>
+      <h2 style="font-size:clamp(2rem,7vw,3.4rem)">Donnez <span class="hl">pignon sur rue</span> à votre métier.</h2>
+      <p class="lead">Votre site web et votre identité de marque. Clé en main, en <b>7 jours</b>, à <b>prix fixe</b>.</p>
+      <div class="cta" style="justify-content:center">
+        <a href="#contact" class="btn btn-p">Recevoir mon devis →</a>
+        <a href="#preuve" class="btn btn-g">Voir une réalisation</a>
       </div>
+      <div class="trust" style="justify-content:center">
+        <span><span class="dot"></span> Livré en 7 jours</span>
+        <span><span class="dot"></span> Sans surprise</span>
+        <span><span class="dot"></span> Accompagnement inclus</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEME -->
+  <section class="panel">
+    <div class="card reveal">
+      <span class="eyebrow">Le constat</span>
+      <h2>1 artisan sur 2 est <span class="hl">invisible</span> en ligne.</h2>
+      <p>Vos clients vérifient sur internet. S'ils ne trouvent rien de sérieux, ils appellent le concurrent. Un vrai savoir-faire… qui ne se voit pas.</p>
+    </div>
+  </section>
+
+  <!-- OFFRE -->
+  <section class="panel right">
+    <div class="card reveal">
+      <span class="eyebrow">Ce qu'on vous livre</span>
+      <h2>Tout pour être <span class="hl">pris au sérieux</span>.</h2>
+      <ul class="list">
+        <li><span class="tag">①</span><div><b>Un site web pro</b> — clair, moderne, qui donne envie d'appeler.</div></li>
+        <li><span class="tag">②</span><div><b>Une vraie identité</b> — logo, couleurs, image cohérente partout.</div></li>
+        <li><span class="tag">③</span><div><b>Clé en main</b> — hébergement, mises à jour, hotline. On gère la technique.</div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- METHODE -->
+  <section class="panel">
+    <div class="card reveal">
+      <span class="eyebrow">La méthode Pignon</span>
+      <h2>En ligne en <span class="hl">7 jours</span>.</h2>
+      <div class="steps">
+        <div class="step"><span class="n">1</span><div><b>On vous écoute</b><br><small>Votre métier, vos clients, vos photos.</small></div></div>
+        <div class="step"><span class="n">2</span><div><b>On crée</b><br><small>IA pour la vitesse, main humaine pour la finition.</small></div></div>
+        <div class="step"><span class="n">3</span><div><b>On ajuste</b><br><small>Vos retours, nos retouches.</small></div></div>
+        <div class="step"><span class="n">4</span><div><b>En ligne</b><br><small>Publié. Et on reste là pour la suite.</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREUVE -->
+  <section id="preuve" class="panel right">
+    <div class="card reveal">
+      <span class="eyebrow">Déjà livré</span>
+      <h2>La preuve, pas des promesses.</h2>
+      <p>« Je lançais ma menuiserie sans présence en ligne. Pignon m'a livré une marque et un site complet — et j'ai commencé à recevoir des demandes. Mes clients me prennent enfin au sérieux. »</p>
+      <p style="color:var(--muted);font-size:.9rem;margin-top:.6rem">— Le battant, menuiserie aluminium (PACA)</p>
       <div class="stats">
-        <div class="stat"><b>7 j</b><small>de l'idée au site en ligne</small></div>
+        <div class="stat"><b>7 j</b><small>de l'idée au site</small></div>
         <div class="stat"><b>1</b><small>seul interlocuteur</small></div>
         <div class="stat"><b>0</b><small>surprise sur le prix</small></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- TARIFS -->
-<section id="tarif" class="price">
-  <div class="wrap">
-    <div class="sec-head center">
+  <!-- TARIFS -->
+  <section class="panel center">
+    <div class="card reveal">
       <span class="eyebrow">Tarifs</span>
-      <h2 style="color:#fff">Un prix clair, dès le départ.</h2>
-    </div>
-    <div class="pcard reveal">
-      <div class="sub">Création de votre site + identité de marque</div>
-      <div class="amt">990 € <small>en une fois</small></div>
-      <ul>
-        <li>Site web professionnel sur-mesure</li>
-        <li>Logo + identité de marque</li>
-        <li>Mise en ligne en 7 jours</li>
-        <li>Formulaire de contact / devis</li>
+      <h2>Un prix clair, dès le départ.</h2>
+      <div class="amt" style="margin:.6rem 0">990 € <small>en une fois</small></div>
+      <ul class="list" style="text-align:left">
+        <li><span class="tag">✓</span> Site web sur-mesure</li>
+        <li><span class="tag">✓</span> Logo + identité de marque</li>
+        <li><span class="tag">✓</span> Mise en ligne en 7 jours</li>
       </ul>
-      <div class="sub" style="margin:0 0 1.1rem"><b>+ Abonnement</b> dès 29 €/mois : hébergement, mises à jour, hotline.</div>
-      <a href="#contact" class="btn btn-p" style="width:100%;justify-content:center">Je veux mon site</a>
+      <div class="sub"><b>+ Abonnement</b> dès 29 €/mois : hébergement, mises à jour, hotline.</div>
+      <a href="#contact" class="btn btn-p">Je veux mon site</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACT / CTA -->
-<section id="contact">
-  <div class="wrap">
-    <div class="final reveal">
-      <h2>Prêt à avoir pignon sur rue&nbsp;?</h2>
-      <p>Dites-nous votre métier, on vous rappelle avec une maquette et un prix ferme.</p>
-      <a href="mailto:bonjour@pignon.fr?subject=Je%20veux%20mon%20site%20Pignon" class="btn btn-w">Recevoir mon devis →</a>
+  <!-- CONTACT -->
+  <section id="contact" class="panel center">
+    <div class="card lg reveal" style="background:linear-gradient(160deg,var(--orange),var(--orange-d));border:0">
+      <h2 style="color:#fff">Prêt à avoir pignon sur rue&nbsp;?</h2>
+      <p style="color:rgba(255,255,255,.92)">Dites-nous votre métier, on vous rappelle avec une maquette et un prix ferme.</p>
+      <div class="cta" style="justify-content:center"><a href="mailto:bonjour@pignon.fr?subject=Je%20veux%20mon%20site%20Pignon" class="btn btn-w">Recevoir mon devis →</a></div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<footer>
-  <div class="wrap foot">
-    <div class="logo" style="color:#fff"><span class="mark">P</span> Pignon</div>
-    <div>Le site web des artisans, clé en main. · Donnez pignon sur rue à votre métier.</div>
-  </div>
-</footer>
+<footer><div class="wrap"><b style="color:#fff">Pignon</b> — l'ADN web des artisans. · Donnez pignon sur rue à votre métier.</div></footer>
+<div class="scrollcue" id="cue">Scrollez ↓</div>
 
 <script>
-  // menu mobile
-  var b=document.getElementById('burger'),mm=document.getElementById('mm');
-  b.addEventListener('click',function(){mm.classList.toggle('open')});
-  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open')})});
-  // nav cta apparait au scroll (desktop)
-  var nc=document.getElementById('navcta');
-  // reveal au scroll
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-  window.addEventListener('scroll',function(){if(window.scrollY>520){nc.style.display='inline-flex'}else{nc.style.display='none'}});
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canvas=document.getElementById('bg');
+  if(!window.THREE){return;}
+  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+  renderer.setSize(innerWidth,innerHeight);
+  renderer.setClearColor(0x16264a,1);
+  var scene=new THREE.Scene();
+  scene.fog=new THREE.Fog(0x16264a,12,46);
+  var camera=new THREE.PerspectiveCamera(58,innerWidth/innerHeight,.1,120);
+
+  scene.add(new THREE.AmbientLight(0xffffff,.55));
+  var l1=new THREE.PointLight(0xe8742c,1.3,90);l1.position.set(10,6,14);scene.add(l1);
+  var l2=new THREE.PointLight(0x6aa0ff,1.0,90);l2.position.set(-10,-8,12);scene.add(l2);
+
+  var helix=new THREE.Group();scene.add(helix);
+  var mobile=innerWidth<640;
+  var perTurn=14, N=mobile?70:120, radius=mobile?2.4:3.1, gap=0.55;
+  var H=N*gap;
+  var sg=new THREE.SphereGeometry(mobile?0.17:0.19,16,16);
+  var matA=new THREE.MeshStandardMaterial({color:0xe8742c,emissive:new THREE.Color(0x5a2a08),roughness:.35,metalness:.2});
+  var matB=new THREE.MeshStandardMaterial({color:0xbcd2ff,emissive:new THREE.Color(0x16284f),roughness:.4,metalness:.2});
+  var matR=new THREE.MeshStandardMaterial({color:0x8fa8d6,emissive:new THREE.Color(0x0e1b39),roughness:.6});
+  function ball(x,y,z,m){var s=new THREE.Mesh(sg,m);s.position.set(x,y,z);helix.add(s);}
+  function rung(a,b){var dir=new THREE.Vector3().subVectors(b,a);var len=dir.length();
+    var g=new THREE.CylinderGeometry(0.045,0.045,len,6);var c=new THREE.Mesh(g,matR);
+    c.position.copy(a).add(b).multiplyScalar(0.5);
+    c.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),dir.clone().normalize());helix.add(c);}
+  for(var i=0;i<N;i++){
+    var ang=i*(Math.PI*2/perTurn), y=i*gap - H/2;
+    var ax=Math.cos(ang)*radius, az=Math.sin(ang)*radius;
+    var bx=Math.cos(ang+Math.PI)*radius, bz=Math.sin(ang+Math.PI)*radius;
+    ball(ax,y,az,matA); ball(bx,y,bz,matB);
+    if(i%1===0) rung(new THREE.Vector3(ax,y,az),new THREE.Vector3(bx,y,bz));
+  }
+
+  function resize(){renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}
+  window.addEventListener('resize',resize);
+
+  var prog=0,target=0;
+  function onScroll(){var max=document.body.scrollHeight-innerHeight;target=max>0?window.scrollY/max:0;
+    var cue=document.getElementById('cue');if(cue)cue.style.opacity=window.scrollY>80?0:1;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  var camZ=mobile?12.5:13.5;
+  function frame(){
+    prog+=(target-prog)*0.07;
+    var topY=H/2+2, botY=-H/2-2;
+    var camY=topY+(botY-topY)*prog;
+    camera.position.set(0,camY,camZ);
+    camera.lookAt(0,camY-3.2,0);
+    helix.rotation.y = prog*Math.PI*2*(N/perTurn)*0.5 + 0.0006* (reduce?0:performance.now());
+    renderer.render(scene,camera);
+    requestAnimationFrame(frame);
+  }
+  if(reduce){helix.rotation.y=0.3;}
+  frame();
+
+  // reveal
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');}})},{threshold:.2});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+})();
 </script>
 </body>
 </html>
