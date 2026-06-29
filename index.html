@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pignon — Le site web des artisans, clé en main en 7 jours</title>
+<meta name="description" content="Pignon crée le site web professionnel et l'identité de marque des artisans et TPE. Clé en main, en 7 jours, à prix fixe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#16264a; --navy2:#1f3a6e; --orange:#e8742c; --orange-d:#cf5f1a;
+  --cream:#fff8f0; --ink:#1a2233; --muted:#5b6576; --line:#e7e0d6; --white:#fff;
+  --r:18px; --shadow:0 18px 50px -22px rgba(22,38,74,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.dsp{font-family:Sora,sans-serif;line-height:1.08;letter-spacing:-.02em}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1080px,92vw);margin-inline:auto}
+.btn{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-family:Sora;border-radius:999px;padding:.85em 1.4em;font-size:1rem;cursor:pointer;border:0;transition:transform .15s ease,box-shadow .15s ease}
+.btn-p{background:var(--orange);color:#fff;box-shadow:0 10px 24px -10px var(--orange)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 16px 30px -12px var(--orange)}
+.btn-g{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+.btn-g:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.eyebrow{font-family:Sora;font-weight:700;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:50;background:rgba(22,38,74,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:.85rem 0;color:#fff}
+.logo{font-family:Sora;font-weight:800;font-size:1.3rem;letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem}
+.logo .mark{width:26px;height:26px;border-radius:7px;background:var(--orange);display:inline-grid;place-items:center;color:#fff;font-size:.95rem;font-weight:800;transform:rotate(-6deg)}
+.nav-links{display:none;gap:1.6rem;font-size:.95rem;font-weight:500}
+.nav-links a{color:rgba(255,255,255,.85)} .nav-links a:hover{color:#fff}
+.nav .btn{padding:.6em 1.1em;font-size:.9rem}
+.burger{background:none;border:0;color:#fff;font-size:1.5rem;cursor:pointer;display:block}
+.mobile-menu{display:none;flex-direction:column;gap:.2rem;padding:.5rem 0 1rem;background:var(--navy);color:#fff}
+.mobile-menu.open{display:flex}
+.mobile-menu a{padding:.7rem .2rem;border-bottom:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.9)}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-12%;top:-30%;width:60vw;height:60vw;max-width:620px;max-height:620px;background:radial-gradient(circle at center,rgba(232,116,44,.28),transparent 62%);pointer-events:none}
+.hero-in{padding:3.4rem 0 3.8rem;position:relative;z-index:2}
+.hero h1{font-size:clamp(2.2rem,7.5vw,3.7rem);font-weight:800;margin:.7rem 0 .9rem}
+.hero h1 .hl{color:var(--orange)}
+.hero p.lead{font-size:clamp(1.05rem,2.6vw,1.25rem);color:rgba(255,255,255,.86);max-width:30ch}
+.hero .cta{display:flex;flex-wrap:wrap;gap:.8rem;margin:1.7rem 0 1.2rem}
+.trust{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;font-size:.85rem;color:rgba(255,255,255,.7)}
+.trust span{display:inline-flex;align-items:center;gap:.4rem}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--orange);display:inline-block}
+
+/* SECTIONS */
+section{padding:3.3rem 0}
+.sec-head{max-width:38ch;margin-bottom:1.8rem}
+.sec-head h2{font-size:clamp(1.6rem,5vw,2.3rem);font-weight:700;margin:.5rem 0}
+.sec-head p{color:var(--muted);font-size:1.05rem}
+.center{margin-inline:auto;text-align:center}
+
+/* PROBLEME */
+.prob{background:var(--navy);color:#fff}
+.prob .big{font-size:clamp(1.7rem,5.5vw,2.6rem);font-family:Sora;font-weight:800;line-height:1.15;max-width:18ch}
+.prob .big b{color:var(--orange)}
+.prob .pts{display:grid;gap:1rem;margin-top:1.6rem}
+.prob .pt{display:flex;gap:.8rem;align-items:flex-start;color:rgba(255,255,255,.82)}
+.prob .pt .x{color:var(--orange);font-weight:800;font-family:Sora}
+
+/* CARDS */
+.cards{display:grid;gap:1.1rem}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.5rem;box-shadow:0 8px 24px -18px rgba(22,38,74,.5)}
+.card .ic{width:46px;height:46px;border-radius:12px;background:var(--cream);display:grid;place-items:center;font-size:1.4rem;margin-bottom:.9rem;border:1px solid var(--line)}
+.card h3{font-size:1.15rem;margin-bottom:.4rem}
+.card p{color:var(--muted);font-size:.97rem}
+
+/* STEPS */
+.steps{display:grid;gap:.9rem;counter-reset:s}
+.step{display:flex;gap:1rem;background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.2rem;align-items:center}
+.step .n{counter-increment:s;flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:var(--navy);color:#fff;font-family:Sora;font-weight:800;display:grid;place-items:center}
+.step .n::before{content:counter(s)}
+.step b{font-family:Sora}
+.step small{color:var(--muted)}
+
+/* PREUVE */
+.proof{background:linear-gradient(160deg,#fff,#fff5ea)}
+.quote{background:#fff;border:1px solid var(--line);border-left:5px solid var(--orange);border-radius:var(--r);padding:1.6rem;box-shadow:var(--shadow)}
+.quote p{font-size:1.15rem;font-family:Sora;font-weight:500;line-height:1.45}
+.quote .who{margin-top:1rem;color:var(--muted);font-size:.92rem}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:1.4rem;text-align:center}
+.stat b{display:block;font-family:Sora;font-weight:800;font-size:1.7rem;color:var(--navy2)}
+.stat small{color:var(--muted);font-size:.8rem}
+
+/* PRICING */
+.price{background:var(--navy);color:#fff}
+.pcard{background:#fff;color:var(--ink);border-radius:22px;padding:2rem 1.7rem;box-shadow:var(--shadow);max-width:440px;margin-inline:auto;position:relative;overflow:hidden}
+.pcard::before{content:"Prix fixe, sans surprise";position:absolute;top:1.1rem;right:-2.4rem;background:var(--orange);color:#fff;font-family:Sora;font-weight:700;font-size:.72rem;padding:.3rem 3rem;transform:rotate(38deg)}
+.pcard .amt{font-family:Sora;font-weight:800;font-size:3rem;color:var(--navy);line-height:1}
+.pcard .amt small{font-size:1rem;color:var(--muted);font-weight:600}
+.pcard ul{list-style:none;margin:1.2rem 0;display:grid;gap:.6rem}
+.pcard li{display:flex;gap:.6rem;align-items:flex-start;font-size:.97rem}
+.pcard li::before{content:"✓";color:var(--orange);font-weight:800}
+.pcard .sub{background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem;font-size:.92rem;color:var(--muted);margin-bottom:1.1rem}
+
+/* CTA */
+.final{background:linear-gradient(160deg,var(--orange),var(--orange-d));color:#fff;text-align:center;border-radius:26px;padding:2.6rem 1.4rem;box-shadow:var(--shadow)}
+.final h2{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:800;margin-bottom:.6rem}
+.final p{color:rgba(255,255,255,.92);max-width:40ch;margin:0 auto 1.4rem}
+.final .btn-w{background:#fff;color:var(--navy)}
+
+footer{background:var(--navy);color:rgba(255,255,255,.7);padding:2rem 0;font-size:.88rem}
+.foot{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(min-width:720px){
+  .nav-links{display:flex}
+  .burger{display:none}
+  .cards{grid-template-columns:repeat(3,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .prob .grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:2.4rem;align-items:center}
+  .hero-in{padding:5rem 0 5.4rem}
+  .proof .grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center}
+}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo"><span class="mark">P</span> Pignon</div>
+    <nav class="nav-links">
+      <a href="#offre">L'offre</a>
+      <a href="#methode">Méthode</a>
+      <a href="#preuve">Réalisations</a>
+      <a href="#tarif">Tarifs</a>
+    </nav>
+    <a href="#contact" class="btn btn-p" style="display:none" id="navcta">Mon devis</a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+  </div>
+  <div class="wrap mobile-menu" id="mm">
+    <a href="#offre">L'offre</a><a href="#methode">Méthode</a><a href="#preuve">Réalisations</a><a href="#tarif">Tarifs</a><a href="#contact">Mon devis</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <span class="eyebrow">Sites web &amp; marque · artisans &amp; TPE</span>
+    <h1>Donnez <span class="hl">pignon sur rue</span><br>à votre métier.</h1>
+    <p class="lead">Votre site web professionnel et votre identité de marque. Clé en main, en <b>7 jours</b>, à <b>prix fixe</b>.</p>
+    <div class="cta">
+      <a href="#contact" class="btn btn-p">Recevoir mon devis →</a>
+      <a href="#preuve" class="btn btn-g">Voir une réalisation</a>
+    </div>
+    <div class="trust">
+      <span><span class="dot"></span> Livré en 7 jours</span>
+      <span><span class="dot"></span> Sans surprise</span>
+      <span><span class="dot"></span> Accompagnement inclus</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEME -->
+<section class="prob">
+  <div class="wrap grid2">
+    <div class="reveal">
+      <p class="big">1 artisan sur 2 n'a <b>aucun site crédible</b>. Et ça leur coûte des clients.</p>
+    </div>
+    <div class="pts reveal">
+      <div class="pt"><span class="x">✕</span><div>Des clients vérifient en ligne, ne trouvent rien de sérieux… et appellent le concurrent.</div></div>
+      <div class="pt"><span class="x">✕</span><div>Une agence, c'est cher et lent. Le faire soi-même sur Wix, c'est moche et chronophage.</div></div>
+      <div class="pt"><span class="x">✕</span><div>Résultat : un savoir-faire réel, mais invisible.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFRE -->
+<section id="offre">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Ce qu'on fait pour vous</span>
+      <h2>Tout ce qu'il faut pour être pris au sérieux.</h2>
+      <p>Un seul interlocuteur, un seul forfait, zéro prise de tête.</p>
+    </div>
+    <div class="cards">
+      <div class="card reveal"><div class="ic">🌐</div><h3>Un site web pro</h3><p>Un site clair et moderne qui présente votre métier, vos réalisations et un moyen simple de vous contacter.</p></div>
+      <div class="card reveal"><div class="ic">🎨</div><h3>Une vraie identité</h3><p>Logo, couleurs, charte : une image cohérente et professionnelle sur tous vos supports.</p></div>
+      <div class="card reveal"><div class="ic">🧰</div><h3>Clé en main</h3><p>Hébergement, mises à jour, et une hotline. On s'occupe de la technique, vous gérez votre chantier.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODE -->
+<section id="methode" style="background:#fff">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">La méthode Pignon</span>
+      <h2>En ligne en 7 jours, sans y passer vos soirées.</h2>
+      <p>L'IA pour aller vite, la main humaine pour la finition.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><span class="n"></span><div><b>Jour 1 — On vous écoute.</b><br><small>Un échange simple : votre métier, vos clients, vos photos.</small></div></div>
+      <div class="step reveal"><span class="n"></span><div><b>Jours 2 à 5 — On crée.</b><br><small>Marque + site générés rapidement, puis peaufinés à la main.</small></div></div>
+      <div class="step reveal"><span class="n"></span><div><b>Jour 6 — On ajuste.</b><br><small>Vos retours, nos retouches. C'est votre image.</small></div></div>
+      <div class="step reveal"><span class="n"></span><div><b>Jour 7 — En ligne.</b><br><small>Votre site est publié. On reste là pour la suite.</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PREUVE -->
+<section id="preuve" class="proof">
+  <div class="wrap grid2">
+    <div class="quote reveal">
+      <p>« Je lançais ma menuiserie sans aucune présence en ligne. Pignon m'a livré une marque et un site complet — devis validé, image pro. Mes clients me prennent enfin au sérieux. »</p>
+      <div class="who">— Le battant, menuiserie aluminium (PACA)</div>
+    </div>
+    <div class="reveal">
+      <div class="sec-head" style="margin-bottom:1rem">
+        <span class="eyebrow">Déjà livré</span>
+        <h2 style="font-size:1.6rem">La preuve, pas des promesses.</h2>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>7 j</b><small>de l'idée au site en ligne</small></div>
+        <div class="stat"><b>1</b><small>seul interlocuteur</small></div>
+        <div class="stat"><b>0</b><small>surprise sur le prix</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section id="tarif" class="price">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Tarifs</span>
+      <h2 style="color:#fff">Un prix clair, dès le départ.</h2>
+    </div>
+    <div class="pcard reveal">
+      <div class="sub">Création de votre site + identité de marque</div>
+      <div class="amt">990 € <small>en une fois</small></div>
+      <ul>
+        <li>Site web professionnel sur-mesure</li>
+        <li>Logo + identité de marque</li>
+        <li>Mise en ligne en 7 jours</li>
+        <li>Formulaire de contact / devis</li>
+      </ul>
+      <div class="sub" style="margin:0 0 1.1rem"><b>+ Abonnement</b> dès 29 €/mois : hébergement, mises à jour, hotline.</div>
+      <a href="#contact" class="btn btn-p" style="width:100%;justify-content:center">Je veux mon site</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / CTA -->
+<section id="contact">
+  <div class="wrap">
+    <div class="final reveal">
+      <h2>Prêt à avoir pignon sur rue&nbsp;?</h2>
+      <p>Dites-nous votre métier, on vous rappelle avec une maquette et un prix ferme.</p>
+      <a href="mailto:bonjour@pignon.fr?subject=Je%20veux%20mon%20site%20Pignon" class="btn btn-w">Recevoir mon devis →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="logo" style="color:#fff"><span class="mark">P</span> Pignon</div>
+    <div>Le site web des artisans, clé en main. · Donnez pignon sur rue à votre métier.</div>
+  </div>
+</footer>
+
+<script>
+  // menu mobile
+  var b=document.getElementById('burger'),mm=document.getElementById('mm');
+  b.addEventListener('click',function(){mm.classList.toggle('open')});
+  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open')})});
+  // nav cta apparait au scroll (desktop)
+  var nc=document.getElementById('navcta');
+  // reveal au scroll
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  window.addEventListener('scroll',function(){if(window.scrollY>520){nc.style.display='inline-flex'}else{nc.style.display='none'}});
+</script>
+</body>
+</html>
