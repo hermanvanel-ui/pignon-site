@@ -3,246 +3,313 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pignon — L'ADN web des artisans, clé en main en 7 jours</title>
+<title>Pignon — L'ADN web des artisans · site en 7 jours</title>
 <meta name="description" content="Pignon crée le site web et l'identité de marque des artisans et TPE. Clé en main, en 7 jours, à prix fixe.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#16264a;--navy2:#1f3a6e;--orange:#e8742c;--orange-d:#cf5f1a;--cream:#fff8f0;--ink:#eaf0ff;--muted:#9fb0d0;--white:#fff;--r:18px}
+:root{--navy:#0c1430;--navy2:#142450;--orange:#ff7a2f;--orange-d:#e85f12;--cream:#fff6ec;--ink:#eef2ff;--muted:#9fb0d8;--r:20px}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--navy);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-h1,h2,h3{font-family:Sora,sans-serif;line-height:1.08;letter-spacing:-.02em}
+html,body{overflow-x:hidden}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--navy);line-height:1.6;-webkit-font-smoothing:antialiased;cursor:auto}
+h1,h2,h3{font-family:Sora,sans-serif;line-height:1.04;letter-spacing:-.025em;font-weight:800}
 a{color:inherit;text-decoration:none}
-#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
-.fade-top{position:fixed;inset:0 0 auto 0;height:120px;background:linear-gradient(var(--navy),transparent);z-index:1;pointer-events:none}
-.fade-bot{position:fixed;left:0;right:0;bottom:0;height:140px;background:linear-gradient(transparent,var(--navy));z-index:1;pointer-events:none}
-.wrap{width:min(1100px,92vw);margin-inline:auto}
-.btn{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-family:Sora;border-radius:999px;padding:.85em 1.4em;font-size:1rem;cursor:pointer;border:0;transition:transform .15s,box-shadow .15s}
-.btn-p{background:var(--orange);color:#fff;box-shadow:0 12px 28px -10px var(--orange)}
-.btn-p:hover{transform:translateY(-2px)}
-.btn-g{background:rgba(255,255,255,.06);color:#fff;border:1.5px solid rgba(255,255,255,.3)}
-.btn-w{background:#fff;color:var(--navy)}
-.eyebrow{font-family:Sora;font-weight:700;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange)}
+::selection{background:var(--orange);color:#0c1430}
 
-header{position:fixed;top:0;left:0;right:0;z-index:30}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;color:#fff}
-.wrapN{width:min(1100px,92vw);margin-inline:auto;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:Sora;font-weight:800;font-size:1.3rem;display:flex;align-items:center;gap:.5rem}
-.logo .mark{width:26px;height:26px;border-radius:7px;background:var(--orange);display:inline-grid;place-items:center;color:#fff;font-weight:800;transform:rotate(-6deg)}
-.nav .btn{padding:.55em 1.1em;font-size:.88rem}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.vign{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 80% at 50% 40%,transparent 55%,rgba(5,9,22,.7))}
+.fade-b{position:fixed;left:0;right:0;bottom:0;height:160px;background:linear-gradient(transparent,var(--navy));z-index:1;pointer-events:none}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--orange),#ffd9a8);z-index:40;box-shadow:0 0 12px var(--orange)}
+.cursor{position:fixed;top:0;left:0;width:34px;height:34px;border:1.5px solid rgba(255,255,255,.55);border-radius:50%;z-index:60;pointer-events:none;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s,border-color .25s;mix-blend-mode:difference;will-change:transform}
+.cursor.hov{width:64px;height:64px;background:rgba(255,255,255,.12);border-color:transparent}
+@media(hover:none){.cursor{display:none}}
+
+.wrapN{width:min(1140px,92vw);margin-inline:auto;display:flex;align-items:center;justify-content:space-between}
+header{position:fixed;top:0;left:0;right:0;z-index:30;padding:1.1rem 0}
+.logo{font-family:Sora;font-weight:800;font-size:1.32rem;display:flex;align-items:center;gap:.55rem;letter-spacing:-.02em}
+.logo .mark{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--orange),#ffb066);display:inline-grid;place-items:center;color:#0c1430;font-weight:800;transform:rotate(-7deg);box-shadow:0 6px 18px -6px var(--orange)}
+.btn{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-family:Sora;border-radius:999px;padding:.85em 1.5em;font-size:1rem;cursor:pointer;border:0;will-change:transform}
+.btn-p{background:var(--orange);color:#0c1430;box-shadow:0 14px 34px -12px var(--orange)}
+.btn-g{background:rgba(255,255,255,.05);color:#fff;border:1.5px solid rgba(255,255,255,.28)}
+.btn-w{background:#fff;color:var(--navy)}
+header .btn{padding:.55em 1.15em;font-size:.88rem}
+.eyebrow{font-family:Sora;font-weight:700;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);display:inline-block;margin-bottom:.7rem}
 
 main{position:relative;z-index:2}
-.panel{min-height:100vh;display:flex;align-items:center;padding:5rem 0}
-.panel.right{justify-content:flex-end}
-.panel.center{justify-content:center;text-align:center}
-.card{background:rgba(18,30,58,.62);backdrop-filter:blur(9px);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:2rem;max-width:430px;box-shadow:0 24px 60px -28px #000}
-.card.lg{max-width:560px}
-.card h2{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:800;margin:.5rem 0 .7rem}
-.card p{color:#cdd8ef;font-size:1.03rem}
-.card .lead{font-size:1.12rem;color:#e9eefb}
+.panel{min-height:100vh;display:flex;align-items:center;padding:6rem 0}
+.panel.right{justify-content:flex-end}.panel.center{justify-content:center;text-align:center}
+.wrapC{width:min(1140px,92vw);margin-inline:auto;display:flex;width:100%}
+.panel.right .wrapC{justify-content:flex-end}.panel.center .wrapC{justify-content:center}
+.card{background:rgba(14,24,56,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:2.2rem;max-width:440px;box-shadow:0 30px 80px -36px #000;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--orange),transparent)}
+.card.lg{max-width:620px}
+.card h2{font-size:clamp(1.7rem,4.6vw,2.6rem);margin:.2rem 0 .8rem}
+.card p{color:#cdd8ef;font-size:1.04rem}
+.lead{font-size:1.14rem;color:#e9eefb}
 .hl{color:var(--orange)}
-.cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem}
-.list{list-style:none;display:grid;gap:.7rem;margin-top:1rem}
-.list li{display:flex;gap:.6rem;align-items:flex-start;color:#dde6f7}
+.cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.5rem}
+.list{list-style:none;display:grid;gap:.8rem;margin-top:1.1rem}
+.list li{display:flex;gap:.7rem;align-items:flex-start;color:#dde6f7}
 .list li b{font-family:Sora}
-.tag{color:var(--orange);font-weight:800}
-.trust{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;font-size:.85rem;color:var(--muted);margin-top:1.1rem}
-.trust span{display:inline-flex;gap:.4rem;align-items:center}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--orange)}
-
-.steps{display:grid;gap:.6rem;margin-top:1rem}
-.step{display:flex;gap:.8rem;align-items:center}
-.step .n{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--orange);color:#fff;font-family:Sora;font-weight:800;display:grid;place-items:center;font-size:.95rem}
+.tag{color:var(--orange);font-weight:800;font-family:Sora}
+.trust{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;font-size:.85rem;color:var(--muted);margin-top:1.2rem}
+.trust span{display:inline-flex;gap:.45rem;align-items:center}.dot{width:6px;height:6px;border-radius:50%;background:var(--orange)}
+.steps{display:grid;gap:.7rem;margin-top:1rem}
+.step{display:flex;gap:.85rem;align-items:center}
+.step .n{flex:0 0 auto;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--orange),#ffb066);color:#0c1430;font-family:Sora;font-weight:800;display:grid;place-items:center}
 .step small{color:var(--muted)}
-.amt{font-family:Sora;font-weight:800;font-size:2.8rem;color:#fff;line-height:1}
-.amt small{font-size:1rem;color:var(--muted);font-weight:600}
-.sub{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:.7rem .9rem;font-size:.92rem;color:#cdd8ef;margin:.5rem 0}
-.stats{display:flex;gap:1.4rem;margin-top:1.1rem;justify-content:center;flex-wrap:wrap}
-.stat b{display:block;font-family:Sora;font-weight:800;font-size:1.7rem;color:var(--orange)}
-.stat small{color:var(--muted);font-size:.8rem}
-.scrollcue{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:5;color:var(--muted);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;animation:b 1.8s infinite}
-@keyframes b{0%,100%{opacity:.4;transform:translate(-50%,0)}50%{opacity:1;transform:translate(-50%,5px)}}
-.reveal{opacity:0;transform:translateY(26px) scale(.98);transition:opacity .7s ease,transform .7s ease}
-.reveal.in{opacity:1;transform:none}
-footer{position:relative;z-index:2;background:rgba(11,19,40,.85);color:var(--muted);padding:2rem 0;font-size:.86rem;text-align:center}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
-@media(max-width:600px){.card{padding:1.5rem}.panel{padding:4rem 0}}
+.amt{font-family:Sora;font-weight:800;font-size:3rem;color:#fff;line-height:1}.amt small{font-size:1rem;color:var(--muted);font-weight:600}
+.sub{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.75rem .95rem;font-size:.92rem;color:#cdd8ef;margin:.6rem 0}
+.stats{display:flex;gap:1.6rem;margin-top:1.2rem;justify-content:center;flex-wrap:wrap}
+.stat b{display:block;font-family:Sora;font-weight:800;font-size:1.8rem;color:var(--orange)}.stat small{color:var(--muted);font-size:.8rem}
+.hero h1{font-size:clamp(2.4rem,8.5vw,5rem);line-height:.98}
+.hero .word{display:inline-block;overflow:hidden;vertical-align:top}
+.hero .word i{display:inline-block;font-style:normal;transform:translateY(110%)}
+.scrollcue{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:5;color:var(--muted);font-size:.72rem;letter-spacing:.25em;text-transform:uppercase}
+.scrollcue::after{content:"";display:block;width:1px;height:34px;margin:8px auto 0;background:linear-gradient(var(--orange),transparent);animation:cue 1.8s infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+footer{position:relative;z-index:2;background:rgba(6,11,28,.9);color:var(--muted);padding:2.2rem 0;font-size:.85rem;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
+.reveal{opacity:0;transform:translateY(30px)}
+@media(max-width:600px){.card{padding:1.6rem}.panel{padding:4.5rem 0}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.hero .word i{transform:none}}
 </style>
 </head>
 <body>
 <canvas id="bg"></canvas>
-<div class="fade-top"></div><div class="fade-bot"></div>
+<div class="grain"></div><div class="vign"></div><div class="fade-b"></div>
+<div class="prog" id="prog"></div>
+<div class="cursor" id="cursor"></div>
 
-<header><div class="wrapN nav">
+<header><div class="wrapN">
   <div class="logo"><span class="mark">P</span> Pignon</div>
-  <a href="#contact" class="btn btn-p">Mon devis</a>
+  <a href="#contact" class="btn btn-p" data-mag>Mon devis</a>
 </div></header>
 
 <main>
-  <!-- HERO -->
-  <section class="panel center">
-    <div class="card lg" style="background:rgba(18,30,58,.45)">
+  <section class="panel center hero">
+    <div class="wrapC" style="flex-direction:column;align-items:center">
       <span class="eyebrow">L'ADN web des artisans &amp; TPE</span>
-      <h2 style="font-size:clamp(2rem,7vw,3.4rem)">Donnez <span class="hl">pignon sur rue</span> à votre métier.</h2>
-      <p class="lead">Votre site web et votre identité de marque. Clé en main, en <b>7 jours</b>, à <b>prix fixe</b>.</p>
-      <div class="cta" style="justify-content:center">
-        <a href="#contact" class="btn btn-p">Recevoir mon devis →</a>
-        <a href="#preuve" class="btn btn-g">Voir une réalisation</a>
+      <h1 id="htitle">Donnez <span class="hl">pignon</span> sur rue à votre métier.</h1>
+      <p class="lead reveal" style="max-width:34ch;margin-top:1.2rem">Votre site web et votre identité de marque. Clé en main, en <b>7 jours</b>, à <b>prix fixe</b>.</p>
+      <div class="cta reveal" style="justify-content:center">
+        <a href="#contact" class="btn btn-p" data-mag>Recevoir mon devis →</a>
+        <a href="#preuve" class="btn btn-g" data-mag>Voir une réalisation</a>
       </div>
-      <div class="trust" style="justify-content:center">
-        <span><span class="dot"></span> Livré en 7 jours</span>
-        <span><span class="dot"></span> Sans surprise</span>
-        <span><span class="dot"></span> Accompagnement inclus</span>
+      <div class="trust reveal" style="justify-content:center">
+        <span><span class="dot"></span> Livré en 7 jours</span><span><span class="dot"></span> Sans surprise</span><span><span class="dot"></span> Accompagnement inclus</span>
       </div>
     </div>
   </section>
 
-  <!-- PROBLEME -->
-  <section class="panel">
-    <div class="card reveal">
-      <span class="eyebrow">Le constat</span>
-      <h2>1 artisan sur 2 est <span class="hl">invisible</span> en ligne.</h2>
-      <p>Vos clients vérifient sur internet. S'ils ne trouvent rien de sérieux, ils appellent le concurrent. Un vrai savoir-faire… qui ne se voit pas.</p>
-    </div>
-  </section>
+  <section class="panel"><div class="wrapC"><div class="card reveal">
+    <span class="eyebrow">Le constat</span>
+    <h2>1 artisan sur 2 est <span class="hl">invisible</span> en ligne.</h2>
+    <p>Vos clients vérifient sur internet. S'ils ne trouvent rien de sérieux, ils appellent le concurrent. Un vrai savoir-faire… qui ne se voit pas.</p>
+  </div></div></section>
 
-  <!-- OFFRE -->
-  <section class="panel right">
-    <div class="card reveal">
-      <span class="eyebrow">Ce qu'on vous livre</span>
-      <h2>Tout pour être <span class="hl">pris au sérieux</span>.</h2>
-      <ul class="list">
-        <li><span class="tag">①</span><div><b>Un site web pro</b> — clair, moderne, qui donne envie d'appeler.</div></li>
-        <li><span class="tag">②</span><div><b>Une vraie identité</b> — logo, couleurs, image cohérente partout.</div></li>
-        <li><span class="tag">③</span><div><b>Clé en main</b> — hébergement, mises à jour, hotline. On gère la technique.</div></li>
-      </ul>
-    </div>
-  </section>
+  <section class="panel right"><div class="wrapC"><div class="card reveal">
+    <span class="eyebrow">Ce qu'on vous livre</span>
+    <h2>Tout pour être <span class="hl">pris au sérieux</span>.</h2>
+    <ul class="list">
+      <li><span class="tag">01</span><div><b>Un site web pro</b> — clair, moderne, qui donne envie d'appeler.</div></li>
+      <li><span class="tag">02</span><div><b>Une vraie identité</b> — logo, couleurs, image cohérente partout.</div></li>
+      <li><span class="tag">03</span><div><b>Clé en main</b> — hébergement, mises à jour, hotline.</div></li>
+    </ul>
+  </div></div></section>
 
-  <!-- METHODE -->
-  <section class="panel">
-    <div class="card reveal">
-      <span class="eyebrow">La méthode Pignon</span>
-      <h2>En ligne en <span class="hl">7 jours</span>.</h2>
-      <div class="steps">
-        <div class="step"><span class="n">1</span><div><b>On vous écoute</b><br><small>Votre métier, vos clients, vos photos.</small></div></div>
-        <div class="step"><span class="n">2</span><div><b>On crée</b><br><small>IA pour la vitesse, main humaine pour la finition.</small></div></div>
-        <div class="step"><span class="n">3</span><div><b>On ajuste</b><br><small>Vos retours, nos retouches.</small></div></div>
-        <div class="step"><span class="n">4</span><div><b>En ligne</b><br><small>Publié. Et on reste là pour la suite.</small></div></div>
-      </div>
+  <section class="panel"><div class="wrapC"><div class="card reveal">
+    <span class="eyebrow">La méthode Pignon</span>
+    <h2>En ligne en <span class="hl">7 jours</span>.</h2>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><div><b>On vous écoute</b><br><small>Votre métier, vos clients, vos photos.</small></div></div>
+      <div class="step"><span class="n">2</span><div><b>On crée</b><br><small>IA pour la vitesse, main humaine pour la finition.</small></div></div>
+      <div class="step"><span class="n">3</span><div><b>On ajuste</b><br><small>Vos retours, nos retouches.</small></div></div>
+      <div class="step"><span class="n">4</span><div><b>En ligne</b><br><small>Publié. Et on reste là pour la suite.</small></div></div>
     </div>
-  </section>
+  </div></div></section>
 
-  <!-- PREUVE -->
-  <section id="preuve" class="panel right">
-    <div class="card reveal">
-      <span class="eyebrow">Déjà livré</span>
-      <h2>La preuve, pas des promesses.</h2>
-      <p>« Je lançais ma menuiserie sans présence en ligne. Pignon m'a livré une marque et un site complet — et j'ai commencé à recevoir des demandes. Mes clients me prennent enfin au sérieux. »</p>
-      <p style="color:var(--muted);font-size:.9rem;margin-top:.6rem">— Le battant, menuiserie aluminium (PACA)</p>
-      <div class="stats">
-        <div class="stat"><b>7 j</b><small>de l'idée au site</small></div>
-        <div class="stat"><b>1</b><small>seul interlocuteur</small></div>
-        <div class="stat"><b>0</b><small>surprise sur le prix</small></div>
-      </div>
-    </div>
-  </section>
+  <section id="preuve" class="panel right"><div class="wrapC"><div class="card reveal">
+    <span class="eyebrow">Déjà livré</span>
+    <h2>La preuve, pas des promesses.</h2>
+    <p>« Je lançais ma menuiserie sans présence en ligne. Pignon m'a livré une marque et un site complet — et j'ai commencé à recevoir des demandes. Mes clients me prennent enfin au sérieux. »</p>
+    <p style="color:var(--muted);font-size:.9rem;margin-top:.6rem">— Le battant, menuiserie aluminium (PACA)</p>
+    <div class="stats"><div class="stat"><b>7 j</b><small>de l'idée au site</small></div><div class="stat"><b>1</b><small>seul interlocuteur</small></div><div class="stat"><b>0</b><small>surprise sur le prix</small></div></div>
+  </div></div></section>
 
-  <!-- TARIFS -->
-  <section class="panel center">
-    <div class="card reveal">
-      <span class="eyebrow">Tarifs</span>
-      <h2>Un prix clair, dès le départ.</h2>
-      <div class="amt" style="margin:.6rem 0">990 € <small>en une fois</small></div>
-      <ul class="list" style="text-align:left">
-        <li><span class="tag">✓</span> Site web sur-mesure</li>
-        <li><span class="tag">✓</span> Logo + identité de marque</li>
-        <li><span class="tag">✓</span> Mise en ligne en 7 jours</li>
-      </ul>
-      <div class="sub"><b>+ Abonnement</b> dès 29 €/mois : hébergement, mises à jour, hotline.</div>
-      <a href="#contact" class="btn btn-p">Je veux mon site</a>
-    </div>
-  </section>
+  <section class="panel center"><div class="wrapC"><div class="card reveal">
+    <span class="eyebrow">Tarifs</span>
+    <h2>Un prix clair, dès le départ.</h2>
+    <div class="amt" style="margin:.6rem 0">990 € <small>en une fois</small></div>
+    <ul class="list" style="text-align:left">
+      <li><span class="tag">✓</span> Site web sur-mesure</li><li><span class="tag">✓</span> Logo + identité de marque</li><li><span class="tag">✓</span> Mise en ligne en 7 jours</li>
+    </ul>
+    <div class="sub"><b>+ Abonnement</b> dès 29 €/mois : hébergement, mises à jour, hotline.</div>
+    <a href="#contact" class="btn btn-p" data-mag>Je veux mon site</a>
+  </div></div></section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="panel center">
-    <div class="card lg reveal" style="background:linear-gradient(160deg,var(--orange),var(--orange-d));border:0">
-      <h2 style="color:#fff">Prêt à avoir pignon sur rue&nbsp;?</h2>
-      <p style="color:rgba(255,255,255,.92)">Dites-nous votre métier, on vous rappelle avec une maquette et un prix ferme.</p>
-      <div class="cta" style="justify-content:center"><a href="mailto:bonjour@pignon.fr?subject=Je%20veux%20mon%20site%20Pignon" class="btn btn-w">Recevoir mon devis →</a></div>
-    </div>
-  </section>
+  <section id="contact" class="panel center"><div class="wrapC"><div class="card lg reveal" style="background:linear-gradient(150deg,var(--orange),var(--orange-d));border:0;text-align:center">
+    <h2 style="color:#0c1430">Prêt à avoir pignon sur rue&nbsp;?</h2>
+    <p style="color:rgba(12,20,48,.85)">Dites-nous votre métier, on vous rappelle avec une maquette et un prix ferme.</p>
+    <div class="cta" style="justify-content:center"><a href="mailto:bonjour@pignon.fr?subject=Je%20veux%20mon%20site%20Pignon" class="btn btn-w" data-mag>Recevoir mon devis →</a></div>
+  </div></div></section>
 </main>
 
-<footer><div class="wrap"><b style="color:#fff">Pignon</b> — l'ADN web des artisans. · Donnez pignon sur rue à votre métier.</div></footer>
-<div class="scrollcue" id="cue">Scrollez ↓</div>
+<footer><div class="wrapN" style="justify-content:center"><b style="color:#fff">Pignon</b>&nbsp;— l'ADN web des artisans. · Donnez pignon sur rue à votre métier.</div></footer>
+<div class="scrollcue">Scrollez</div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
 (function(){
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var canvas=document.getElementById('bg');
-  if(!window.THREE){return;}
-  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true});
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
-  renderer.setSize(innerWidth,innerHeight);
-  renderer.setClearColor(0x16264a,1);
-  var scene=new THREE.Scene();
-  scene.fog=new THREE.Fog(0x16264a,12,46);
-  var camera=new THREE.PerspectiveCamera(58,innerWidth/innerHeight,.1,120);
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var mobile=innerWidth<700;
 
-  scene.add(new THREE.AmbientLight(0xffffff,.55));
-  var l1=new THREE.PointLight(0xe8742c,1.3,90);l1.position.set(10,6,14);scene.add(l1);
-  var l2=new THREE.PointLight(0x6aa0ff,1.0,90);l2.position.set(-10,-8,12);scene.add(l2);
+/* ---------- SMOOTH SCROLL (Lenis) + GSAP ---------- */
+var lenis;
+try{
+  if(window.Lenis && !reduce){
+    lenis=new Lenis({lerp:0.1,smoothWheel:true});
+    if(window.ScrollTrigger){lenis.on('scroll',ScrollTrigger.update);}
+    gsap.ticker.add(function(t){lenis.raf(t*1000)});gsap.ticker.lagSmoothing(0);
+  }
+}catch(e){}
+
+/* ---------- THREE : helice ADN + bloom + particules ---------- */
+var canvas=document.getElementById('bg');
+if(window.THREE){
+  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:!mobile,alpha:false});
+  renderer.setPixelRatio(Math.min(devicePixelRatio||1,mobile?1.5:2));
+  renderer.setSize(innerWidth,innerHeight);
+  renderer.setClearColor(0x0c1430,1);
+  var scene=new THREE.Scene();
+  scene.fog=new THREE.FogExp2(0x0c1430,mobile?0.034:0.028);
+  var camera=new THREE.PerspectiveCamera(56,innerWidth/innerHeight,.1,160);
+
+  scene.add(new THREE.AmbientLight(0x4a5a8a,.7));
+  var l1=new THREE.PointLight(0xff7a2f,1.5,120);l1.position.set(12,8,16);scene.add(l1);
+  var l2=new THREE.PointLight(0x4f8fff,1.2,120);l2.position.set(-12,-10,14);scene.add(l2);
+
+  var TURNS=mobile?7:10, radius=mobile?2.6:3.2, H=mobile?48:64;
+  function hpoint(t,phase){var a=t*TURNS*Math.PI*2+phase;return new THREE.Vector3(Math.cos(a)*radius,(t-0.5)*H,Math.sin(a)*radius);}
+  function strandCurve(phase){var seg=mobile?200:340,p=[];for(var i=0;i<=seg;i++)p.push(hpoint(i/seg,phase));return new THREE.CatmullRomCurve3(p);}
 
   var helix=new THREE.Group();scene.add(helix);
-  var mobile=innerWidth<640;
-  var perTurn=14, N=mobile?70:120, radius=mobile?2.4:3.1, gap=0.55;
-  var H=N*gap;
-  var sg=new THREE.SphereGeometry(mobile?0.17:0.19,16,16);
-  var matA=new THREE.MeshStandardMaterial({color:0xe8742c,emissive:new THREE.Color(0x5a2a08),roughness:.35,metalness:.2});
-  var matB=new THREE.MeshStandardMaterial({color:0xbcd2ff,emissive:new THREE.Color(0x16284f),roughness:.4,metalness:.2});
-  var matR=new THREE.MeshStandardMaterial({color:0x8fa8d6,emissive:new THREE.Color(0x0e1b39),roughness:.6});
-  function ball(x,y,z,m){var s=new THREE.Mesh(sg,m);s.position.set(x,y,z);helix.add(s);}
-  function rung(a,b){var dir=new THREE.Vector3().subVectors(b,a);var len=dir.length();
-    var g=new THREE.CylinderGeometry(0.045,0.045,len,6);var c=new THREE.Mesh(g,matR);
-    c.position.copy(a).add(b).multiplyScalar(0.5);
-    c.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),dir.clone().normalize());helix.add(c);}
-  for(var i=0;i<N;i++){
-    var ang=i*(Math.PI*2/perTurn), y=i*gap - H/2;
-    var ax=Math.cos(ang)*radius, az=Math.sin(ang)*radius;
-    var bx=Math.cos(ang+Math.PI)*radius, bz=Math.sin(ang+Math.PI)*radius;
-    ball(ax,y,az,matA); ball(bx,y,bz,matB);
-    if(i%1===0) rung(new THREE.Vector3(ax,y,az),new THREE.Vector3(bx,y,bz));
+  var matA=new THREE.MeshStandardMaterial({color:0xff7a2f,emissive:new THREE.Color(0xff5a14),emissiveIntensity:.65,roughness:.3,metalness:.3});
+  var matB=new THREE.MeshStandardMaterial({color:0xbcd2ff,emissive:new THREE.Color(0x2f5fd0),emissiveIntensity:.5,roughness:.35,metalness:.3});
+  var seg=mobile?260:460;
+  helix.add(new THREE.Mesh(new THREE.TubeGeometry(strandCurve(0),seg,0.075,8,false),matA));
+  helix.add(new THREE.Mesh(new THREE.TubeGeometry(strandCurve(Math.PI),seg,0.075,8,false),matB));
+
+  // base pairs : noeuds + barreaux
+  var nodeGeo=new THREE.SphereGeometry(mobile?0.17:0.2,18,18);
+  var rungMat=new THREE.MeshStandardMaterial({color:0x9fb6e6,emissive:new THREE.Color(0x24407e),emissiveIntensity:.4,roughness:.5});
+  var pulses=[];
+  var STEPS=mobile?46:74;
+  for(var i=0;i<=STEPS;i++){
+    var t=i/STEPS;var pa=hpoint(t,0),pb=hpoint(t,Math.PI);
+    var sA=new THREE.Mesh(nodeGeo,(i%2?matA:matB));sA.position.copy(pa);helix.add(sA);pulses.push({m:sA,o:Math.random()*6});
+    var sB=new THREE.Mesh(nodeGeo,(i%2?matB:matA));sB.position.copy(pb);helix.add(sB);pulses.push({m:sB,o:Math.random()*6});
+    var dir=new THREE.Vector3().subVectors(pb,pa);var len=dir.length();
+    var rg=new THREE.CylinderGeometry(0.03,0.03,len,6);var c=new THREE.Mesh(rg,rungMat);
+    c.position.copy(pa).add(pb).multiplyScalar(.5);c.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),dir.clone().normalize());helix.add(c);
   }
 
-  function resize(){renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}
-  window.addEventListener('resize',resize);
+  // champ de particules (motes de "data")
+  var pcount=mobile?280:650;var pg=new THREE.BufferGeometry();var pos=new Float32Array(pcount*3);
+  for(var k=0;k<pcount;k++){var rr=4+Math.random()*9,th=Math.random()*Math.PI*2;
+    pos[k*3]=Math.cos(th)*rr;pos[k*3+1]=(Math.random()-.5)*H*1.1;pos[k*3+2]=Math.sin(th)*rr;}
+  pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  var pmat=new THREE.PointsMaterial({color:0xffb07a,size:mobile?0.05:0.06,transparent:true,opacity:.5,depthWrite:false,blending:THREE.AdditiveBlending});
+  var pts=new THREE.Points(pg,pmat);scene.add(pts);
+
+  // bloom (postprocessing) avec fallback
+  var composer=null;
+  try{
+    if(THREE.EffectComposer && THREE.UnrealBloomPass){
+      composer=new THREE.EffectComposer(renderer);
+      composer.addPass(new THREE.RenderPass(scene,camera));
+      var bloom=new THREE.UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),mobile?0.7:1.05,0.6,0.18);
+      composer.addPass(bloom);
+    }
+  }catch(e){composer=null;}
+
+  function resize(){renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();if(composer)composer.setSize(innerWidth,innerHeight);}
+  addEventListener('resize',resize);
 
   var prog=0,target=0;
-  function onScroll(){var max=document.body.scrollHeight-innerHeight;target=max>0?window.scrollY/max:0;
-    var cue=document.getElementById('cue');if(cue)cue.style.opacity=window.scrollY>80?0:1;}
-  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  function setProg(){var max=document.body.scrollHeight-innerHeight;target=max>0?scrollY/max:0;
+    var pb=document.getElementById('prog');if(pb)pb.style.width=(target*100)+'%';}
+  addEventListener('scroll',setProg,{passive:true});setProg();
 
-  var camZ=mobile?12.5:13.5;
-  function frame(){
-    prog+=(target-prog)*0.07;
-    var topY=H/2+2, botY=-H/2-2;
-    var camY=topY+(botY-topY)*prog;
-    camera.position.set(0,camY,camZ);
-    camera.lookAt(0,camY-3.2,0);
-    helix.rotation.y = prog*Math.PI*2*(N/perTurn)*0.5 + 0.0006* (reduce?0:performance.now());
-    renderer.render(scene,camera);
-    requestAnimationFrame(frame);
+  var camZ=mobile?12:13;var clock=new THREE.Clock();
+  function loop(){
+    var dt=clock.getDelta(),tm=clock.elapsedTime;
+    prog+=(target-prog)*0.06;
+    var topY=H/2+3,botY=-H/2-3;var camY=topY+(botY-topY)*prog;
+    camera.position.set(Math.sin(tm*0.15)*0.6,camY,camZ);
+    camera.lookAt(0,camY-3.4,0);
+    helix.rotation.y=prog*Math.PI*2*TURNS*0.5+(reduce?0:tm*0.06);
+    pts.rotation.y=-tm*0.02;
+    l1.position.x=Math.cos(tm*0.3)*14;l1.position.z=Math.sin(tm*0.3)*14+4;
+    for(var i=0;i<pulses.length;i++){var s=0.85+Math.sin(tm*2+pulses[i].o)*0.18;pulses[i].m.scale.setScalar(s);}
+    if(composer)composer.render();else renderer.render(scene,camera);
+    requestAnimationFrame(loop);
   }
-  if(reduce){helix.rotation.y=0.3;}
-  frame();
+  loop();
+}
 
-  // reveal
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');}})},{threshold:.2});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+/* ---------- GSAP : reveals premium + hero ---------- */
+if(window.gsap){
+  if(window.ScrollTrigger)gsap.registerPlugin(ScrollTrigger);
+  // hero : mots qui montent
+  var title=document.getElementById('htitle');
+  if(title && !reduce){
+    var html=title.innerHTML;
+    title.innerHTML=html.replace(/(<span class="hl">.*?<\/span>|[^\s<]+)(\s*)/g,function(m,w,sp){
+      return '<span class="word"><i>'+w+'</i></span>'+sp;});
+    gsap.to('#htitle .word i',{y:0,duration:1,ease:'power4.out',stagger:0.08,delay:0.15});
+  }
+  gsap.utils.toArray('.hero .reveal').forEach(function(el,i){
+    gsap.to(el,{opacity:1,y:0,duration:1,ease:'power3.out',delay:0.5+i*0.12});
+  });
+  if(window.ScrollTrigger){
+    gsap.utils.toArray('.card.reveal, .panel:not(.hero) .reveal').forEach(function(el){
+      gsap.to(el,{opacity:1,y:0,duration:1.05,ease:'power3.out',
+        scrollTrigger:{trigger:el,start:'top 82%'}});
+    });
+  }else{
+    document.querySelectorAll('.reveal').forEach(function(el){el.style.opacity=1;el.style.transform='none';});
+  }
+}else{document.querySelectorAll('.reveal').forEach(function(el){el.style.opacity=1;el.style.transform='none';});}
+
+/* ---------- curseur custom + boutons magnetiques ---------- */
+var cur=document.getElementById('cursor');
+if(cur && matchMedia('(hover:hover)').matches){
+  var cx=0,cy=0,tx=0,ty=0;
+  addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;});
+  (function r(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;cur.style.transform='translate('+cx+'px,'+cy+'px) translate(-50%,-50%)';requestAnimationFrame(r);})();
+  document.querySelectorAll('a,button,[data-mag]').forEach(function(el){
+    el.addEventListener('mouseenter',function(){cur.classList.add('hov')});
+    el.addEventListener('mouseleave',function(){cur.classList.remove('hov')});
+  });
+}
+document.querySelectorAll('[data-mag]').forEach(function(b){
+  b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();
+    var x=(e.clientX-r.left-r.width/2)*.3,y=(e.clientY-r.top-r.height/2)*.4;
+    b.style.transform='translate('+x+'px,'+y+'px)';});
+  b.addEventListener('mouseleave',function(){b.style.transform='';b.style.transition='transform .3s ease';
+    setTimeout(function(){b.style.transition='';},300);});
+});
 })();
 </script>
 </body>
